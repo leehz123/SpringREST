@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ezen.restful.mapper.PizzaMapper">
+  
+	 <select id="getPizzaList" resultType="com.ezen.restful.dto.Pizza">
+	 	SELECT * FROM pizza
+	 </select>
+	 
+	 <select id="getPizzaById" resultType="com.ezen.restful.dto.Pizza">
+	   SELECT * FROM pizza WHERE p_id = #{id}
+	 </select>
+	 
+	 <update id="updateView">
+	   UPDATE pizza SET p_calories = p_calories + 1
+	   WHERE p_id = #{id}
+	 </update>
+	
+	 <select id="getPizzaNames" resultType="string">
+		SELECT p_name FROM pizza
+	 </select>
+	
+	 <select id="getPizzaByName" resultType="com.ezen.restful.dto.Pizza">
+	 	SELECT * FROM pizza WHERE p_name = #{name}
+	 </select>
+	   
+	 <insert id="insertPizza">
+		INSERT INTO pizza VALUES(pizza_seq.nextval, #{name}, #{price}, #{calories})
+	 </insert>
+
+	<update id="updatePizza">
+		UPDATE pizza SET p_name = #{name}, p_price = #{price}, p_calories = #{calories} WHERE p_id = #{id}
+	</update>
+	
+	<delete id="deletePizza">
+		DELETE FROM pizza WHERE p_id = #{id}
+	</delete>
+
+
+
+
+
+  
+	 <select id="getAll" resultType="com.ezen.restful.dto.Pizza">
+	 	SELECT * FROM pizza
+	 </select>
+	 
+	 <update id="update">
+	 	UPDATE pizza
+	 	SET
+	 		p_name = #{name},
+	 		p_price = #{price}, 
+	 		p_calories = #{calories}
+	 	WHERE 	
+	 		p_id = #{id}  
+	 </update>
+  
+</mapper>
